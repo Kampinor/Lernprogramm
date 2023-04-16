@@ -1,0 +1,156 @@
+#include <iostream>
+#include <ifstream> //zum einlesen von Dateien 
+#include <string>
+#include <vector> //vector-klasse
+using namespace std;  //std:: kann weggelassen werden 
+
+int Lernmodus();
+int StartAll();
+int GetLernfeld();
+int StartPracMode(int iFach);
+int Load_Choose_Quiz(int iFach,vector <string> strFragen);
+vector<string> Split(string strtosplit, char separator);
+StartClassicQuiz(vector<string>strFragen, iPoints);
+
+main() { //void wird nicht mit angegeben
+// to do readVersionData();
+int iBuild = 2,iFunc =0,iBug = 0;
+cout << "Willkommen im Lernprogramm\n";
+cout << "Version" + to_string(iBuild) + to_string(iFunc) + to_string(iBug);
+//StartAll();
+
+
+} 
+
+int StartAll()
+{
+  int iModus = Lernmodus();
+  if (iModus == 1) {
+  	int iFach = GetLernfeld();
+    	if (iFach == 0) {
+        cout << "Lernfeld nicht gefunden";
+        StartAll();
+     } 
+      else {
+	      cout << "Ubungsmodus aktiviert" ;  
+        StartPracMode(iFach);
+     } 
+  } 
+  if (iModus == 2) {
+  // StartExamMode();
+  }
+  else  {
+  cout << "\nFehler:Lernmodus nicht vorhanden";
+  } 
+return 0;
+}
+
+int Lernmodus() {
+int iModus =0;
+cout << "Lernmodus wahlen:\n";
+cout << "(0) Uebungsmodus (1) Pruefungsmodus (2) Abbruch";
+cin >> iModus;
+
+if (iModus >= 1 && iModus < 2) {
+  return iModus;
+}
+if (iModus ==2) {
+  exit(1);
+}
+else {
+  return 0;
+  } 
+
+}
+
+int GetLernfeld() {
+cout << "Bitte Lernfeld zum Lernen eingeben:";
+string strEingabe;
+cin >> strEingabe;
+
+if (strEingabe == "Wirtschaft" || "wirtschaft") {
+  cout << "Wirtschaft wurde gewaehlt";
+  return 1;
+}
+else  {
+  return 0;
+} 
+
+} 
+
+int StartPracMode(int iFach) {
+	if (iFach == 1) {
+		vector <string> strFragen;
+		if (Load_Choose_Quiz(iFach,strFragen) == 1) { //vector kann auch return, aber keine Überprüfung 
+			cout << "Fragenpacket erfolgreich gelesen";
+			int iPoints=0;
+			StartClassicQuiz(strFragen,iPoints);
+			}
+		else {
+			cout << "Fehler beim Lesen des Fragenkatalogs";
+			} 
+		} 
+
+} 
+
+int Load_Choose_Quiz(int iFach,vector <string> strFragen) {
+	//Fragen aus Csv nach IFach
+	ifstream in("test.txt");
+	
+	//Datei einlesen
+	string strLine;
+	vector<string> strsAkt;
+	while (getline(in,strLine)) {
+		//cout << strLine;
+		string fakeline = "Antwort1;Antwort2;Antwort3;Antwort4;Korrekt";
+  strsAkt = Split(fakeline, ';') ;
+  strFragen.push_back(strAkt[0]);
+  strFragen.push_back(strAkt[1]);
+  strFragen.push_back(strAkt[2]);
+  strFragen.push_back(strAkt[3]);
+  strFragen.push_back(strAkt[4]);
+		//Schleife zur Erstellung des 
+		
+		// 4x +5 Lösung 
+		}
+	return 0;
+} 
+
+vector<string> Split(string strtosplit, char separator) { 
+	int i = 0;
+	vector<string> NewVector;
+	
+	// Temporary string used to split the string. 
+	string strAkt; 
+	while (strtosplit[i] != '\0') { 
+		if (strtosplit[i] != separator) { 
+			// Append the char to the temp string. 
+			strAkt += strtosplit[i]; 
+			} 
+		else { 
+			 //cout << s << endl;
+			 NewVector.push_back(strAkt);
+			 strAkt.clear(); 
+			 } 
+			 i++; 
+	} // Output the last stored word. 
+	//cout << s << endl;
+	return NewVector;
+} 
+
+
+StartClassicQuiz(vector<string>strFragen, int iPoints) {
+	 //Randomizer 
+	 //sRand() % 
+	 //int iRound = rand();
+	 int iRound =0; iCancel =0;
+	 for (int i =0;i=1,i++) {
+	 	//ab hier kopieren 
+	 	} 
+	 
+	 
+	
+	} 
+
+
+
